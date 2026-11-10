@@ -1,0 +1,15 @@
+# Based on Google style, adjusted to match existing code (see docs/collaboration-spec.md §4.1).
+# Apply only to changed lines: git clang-format dev
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 120
+NamespaceIndentation: All
+AccessModifierOffset: -4
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+DerivePointerAlignment: false
+PointerAlignment: Left
+SortIncludes: Never
+IncludeBlocks: Preserve

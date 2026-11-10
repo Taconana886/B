@@ -1,0 +1,44 @@
+# Module ownership (three isolated modules). See plan/team-division-orin-nano-super.md §1
+# and docs/collaboration-spec.md §1.
+# Replace @member-a / @member-b / @member-c with real GitLab/GitHub usernames.
+# The last matching pattern wins, so specific rules come after broad ones.
+
+# Default: anything unassigned needs all three
+*                                   @member-a @member-b @member-c
+
+# ---- M1 perception front-end (A): image -> bbox_t ----
+/sensor/                            @member-a
+/detect/                            @member-a
+/asset/models/                      @member-a
+
+# ---- M2 geometry accuracy (B): bbox_t -> armor measurement ----
+/detect/corner_refine_submodule.*   @member-b
+/detect/armor_corner_optimizer.*    @member-b
+/mathutils/CoordTransformer.*       @member-b
+/asset/camParam/                    @member-b
+/tools/handeye_calibration.py       @member-b
+/tools/replay/                      @member-b
+
+# ---- M3 decision (C): armor measurement -> gimbal command ----
+/predict/                           @member-c
+/planner/                           @member-c
+/mathutils/Kalman.hpp               @member-c
+/mathutils/ExtendedKalman.hpp       @member-c
+/mathutils/IESEKF.hpp               @member-c
+/mathutils/IESEKF_Double_Armor.hpp  @member-c
+/asset/plannerParam/                @member-c
+/tools/predictor_simulation.py      @member-c
+
+# ---- Shared frozen zone: all three must approve ----
+/common/                            @member-a @member-b @member-c
+/main.cpp                           @member-a @member-b @member-c
+/main.hpp                           @member-a @member-b @member-c
+/CMakeLists.txt                     @member-a @member-b @member-c
+/mathutils/math_tools.hpp           @member-a @member-b @member-c
+/launch.cfg                         @member-a @member-b @member-c
+/docs/module-contracts.md           @member-a @member-b @member-c
+/docs/collaboration-spec.md         @member-a @member-b @member-c
+/CODEOWNERS                         @member-a @member-b @member-c
+
+# ---- Electrical-control interface: read-only for the algorithm team ----
+/timedserial/                       @member-a @member-b @member-c
